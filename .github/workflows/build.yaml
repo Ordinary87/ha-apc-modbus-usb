@@ -1,6 +1,14 @@
 name: Build APC Modbus USB
 
-on: push: branches: - main workflow_dispatch:
+'on': push: branches: - main workflow_dispatch:
+
+permissions: contents: read packages: write
+
+jobs: build: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v4
+
+name: Build APC Modbus USB
+
+'on': push: branches: - main workflow_dispatch:
 
 permissions: contents: read packages: write
 
