@@ -1,1 +1,21 @@
 
+name: APC Modbus USB
+version: "0.1.0"
+slug: apc_modbus_usb
+description: NUT with USB Modbus support for APC Smart-UPS
+url: https://github.com/Ordinary87/ha-apc-modbus-usb
+arch:
+  - aarch64
+startup: services
+boot: auto
+init: false
+host_dbus: false
+usb: true
+udev: true
+privileged:
+  - SYS_ADMIN
+ports:
+  3493/tcp: 3493
+ports_description:
+  3493/tcp: NUT server
+
