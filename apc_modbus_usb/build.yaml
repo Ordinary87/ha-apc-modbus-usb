@@ -1,0 +1,7 @@
+
+build_from:
+  aarch64: ghcr.io/home-assistant/aarch64-base:3.24
+  armv7: ghcr.io/home-assistant/armv7-base:3.24
+labels:
+  org.opencontainers.image.title: APC Modbus USB
+  org.opencontainers.image.description: NUT with USB Modbus support
