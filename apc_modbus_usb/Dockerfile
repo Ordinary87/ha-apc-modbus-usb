@@ -67,3 +67,7 @@ COPY --from=builder /usr /usr
 COPY --from=builder /etc/nut /etc/nut
 
 WORKDIR /
+COPY run.sh /run.sh
+RUN chmod 755 /run.sh
+
+CMD ["/run.sh"]
