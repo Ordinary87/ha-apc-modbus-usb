@@ -21,16 +21,14 @@ cat > /etc/nut/upsd.conf <<'EOF'
 LISTEN 0.0.0.0 3493
 EOF
 
-cat > /etc/nut/upsd.users <<'EOF'
-[ha]
-  password = ChangeThisPassword123
-  upsmon primary
-EOF
+echo "Checking APC Modbus driver options..."
+/usr/libexec/nut/apc_modbus -h || true
 
-chmod 640 /etc/nut/upsd.users
+echo "Checking USB devices..."
+ls -l /dev/bus/usb/*/* || true
 
 echo "Starting APC Modbus USB driver..."
-/usr/sbin/upsdrvctl start
+/usr/sbin/upsdrvctl -D start
 
 echo "Starting NUT server..."
 exec /usr/sbin/upsd -F
