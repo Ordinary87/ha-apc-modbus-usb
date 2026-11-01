@@ -28,6 +28,11 @@ echo "Checking USB devices..."
 ls -l /dev/bus/usb/*/* || true
 
 echo "Starting APC Modbus USB driver..."
+echo "=== APC MODBUS HELP ==="
+/usr/bin/apc_modbus -h 2>&1 || true
+
+echo "=== USB DEVICES ==="
+lsusb || true
 /usr/sbin/upsdrvctl -D start
 
 echo "Starting NUT server..."
