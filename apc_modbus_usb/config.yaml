@@ -4,6 +4,7 @@ version: "0.1.0"
 slug: apc_modbus_usb
 description: NUT with USB Modbus support for APC Smart-UPS
 url: https://github.com/Ordinary87/ha-apc-modbus-usb
+image: ghcr.io/ordinary87/apc-modbus-usb
 arch:
   - aarch64
 startup: services
