@@ -48,7 +48,6 @@ RUN ./autogen.sh && \
       --prefix=/usr \
       --sysconfdir=/etc/nut \
       --with-drivers=apc_modbus,usbhid-ups \
-      --with-usb=libusb-1.0 \
       --with-modbus+usb \
       --with-modbus-includes="-I/opt/modbus/include/modbus" \
       --with-modbus-libs="-L/opt/modbus/lib -lmodbus" \
