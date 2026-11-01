@@ -55,6 +55,10 @@ RUN ./autogen.sh && \
       --without-neon && \
     make -j2 && \
     make install
+    RUN echo "=== APC MODBUS BUILD CHECK ===" && \
+    /usr/bin/apc_modbus -h 2>&1 | head -30 && \
+    echo "=== DRIVER LOCATION ===" && \
+    find /usr -name 'apc_modbus*' -type f
 
 FROM ghcr.io/home-assistant/base:3.24
 
