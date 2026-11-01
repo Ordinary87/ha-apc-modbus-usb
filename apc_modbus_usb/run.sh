@@ -15,6 +15,7 @@ cat > /etc/nut/ups.conf <<'EOF'
   vendorid = 051d
   productid = 0003
   pollinterval = 2
+  maxretry = 3
 EOF
 
 cat > /etc/nut/upsd.conf <<'EOF'
