@@ -1,4 +1,3 @@
-
 #!/usr/bin/with-contenv bashio
 set -e
 
@@ -22,19 +21,11 @@ cat > /etc/nut/upsd.conf <<'EOF'
 LISTEN 0.0.0.0 3493
 EOF
 
-echo "Checking APC Modbus driver options..."
-/usr/libexec/nut/apc_modbus -h || true
-
 echo "Checking USB devices..."
-ls -l /dev/bus/usb/*/* || true
-
-echo "Starting APC Modbus USB driver..."
-echo "=== APC MODBUS HELP ==="
-/usr/bin/apc_modbus -h 2>&1 || true
-
-echo "=== USB DEVICES ==="
 lsusb || true
-/usr/sbin/upsdrvctl -D start
+
+echo "Starting NUT drivers..."
+/usr/sbin/upsdrvctl -u root -D start || true
 
 echo "Starting NUT server..."
 exec /usr/sbin/upsd -F
