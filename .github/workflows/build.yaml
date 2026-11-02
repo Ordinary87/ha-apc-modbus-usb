@@ -1,30 +1,3 @@
-
-Skip to content
-
-    Ordinary87
-    ha-apc-modbus-usb
-
-Repository navigation
-
-    Code
-    Issues
-    Pull requests
-    Actions
-    Projects
-    Wiki
-    Security and quality
-    Insights
-    Settings
-
-Build APC Modbus USB
-Update build.yaml #10
-
-    All jobs
-    Run details
-
-Workflow file for this run
-.github/workflows/build.yaml at 9f9aa32
-
 name: Build APC Modbus USB
 
 on:
@@ -57,8 +30,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./apc_modbus_usb
-          file: ./apc_modbus_usb/Dockerfile
+          context: .
+          file: ./Dockerfile
           platforms: linux/arm64
           push: true
           tags: ghcr.io/ordinary87/apc-modbus-usb:0.1.3,ghcr.io/ordinary87/apc-modbus-usb:latest
