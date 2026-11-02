@@ -20,6 +20,12 @@ EOF
 cat > /etc/nut/upsd.conf <<'EOF'
 LISTEN 0.0.0.0 3493
 EOF
+cat > /etc/nut/upsd.users <<'EOF'
+[admin]
+  password = secret
+  actions = set
+  instcmd = all
+EOF
 
 echo "Checking USB devices..."
 lsusb || true
