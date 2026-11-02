@@ -56,11 +56,10 @@ RUN ./autogen.sh && \
     make -j2 && \
     make install
     RUN echo "=== APC MODBUS BUILD CHECK ===" && \
-    /usr/bin/apc_modbus -h 2>&1 | head -30 && \
-    echo "=== DRIVER LOCATION ===" && \
+    /usr/bin/apc_modbus -h > /tmp/apc-help.txt 2>&1 || true
+RUN cat /tmp/apc-help.txt
+RUN echo "=== DRIVER LOCATION ===" && \
     find /usr -name 'apc_modbus*' -type f
-
-FROM ghcr.io/home-assistant/base:3.24
 
 RUN apk add --no-cache \
     libusb \
