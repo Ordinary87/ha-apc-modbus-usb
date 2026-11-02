@@ -1,21 +1,7 @@
 FROM ghcr.io/home-assistant/base:3.24 AS builder
 
-RUN apk add --no-cache
-build-base
-git
-autoconf
-automake
-libtool
-gettext-dev
-linux-headers
-libusb-dev
-openssl-dev
-zlib-dev
-pkgconf
-perl
-python3
-bison
-flex
+RUN apk add --no-cache build-base git autoconf automake libtool gettext-dev linux-headers libusb-dev openssl-dev zlib-dev pkgconf perl python3 bison flex
+
 
 WORKDIR /build
 
