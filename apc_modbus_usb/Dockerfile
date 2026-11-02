@@ -24,7 +24,9 @@ FROM ghcr.io/home-assistant/base:3.24
 
 RUN apk add --no-cache libusb openssl zlib
 
-COPY --from=builder /usr /usr COPY --from=builder /etc/nut /etc/nut
+COPY --from=builder /usr /usr 
+
+COPY --from=builder /etc/nut /etc/nut
 
 WORKDIR /
 
