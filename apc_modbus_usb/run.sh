@@ -1,7 +1,9 @@
 #!/usr/bin/with-contenv bashio
 set -e
 
-echo "Starting APC SMT750I Modbus USB (debug build 0.1.4)..."
+echo "Starting APC SMT750I Modbus USB (0.1.5)..."
+
+export NUT_QUIET_INIT_UPSNOTIFY=true
 
 mkdir -p /var/state/ups /run/nut
 chmod 755 /var/state/ups
@@ -31,22 +33,18 @@ EOF
 echo "Checking USB devices..."
 lsusb || true
 
-echo "Starting apc_modbus driver in foreground with debug..."
-/usr/bin/apc_modbus -a myups -u root -DDDDD -F 2>&1 &
-DRV_PID=$!
-sleep 4
-
-if ! kill -0 "$DRV_PID" 2>/dev/null; then
-  echo "!!! DRIVER EXITED EARLY !!!"
-  wait "$DRV_PID" || echo "driver exit code: $?"
+echo "Starting apc_modbus driver (foreground)..."
+/usr/bin/apc_modbus -a myups -u root -F &
+sleep 3
+if ! pgrep -x apc_modbus >/dev/null; then
+  echo "Driver failed to start, exiting."
+  exit 1
 fi
 
-# every 30 s print what upsd actually sees
-( while true; do
-    sleep 30
-    echo "--- upsc myups ---"
-    upsc myups@localhost 2>&1 | head -25
-  done ) &
-
 echo "Starting NUT server..."
-exec /usr/sbin/upsd -F
+/usr/sbin/upsd -F &
+
+# if driver or upsd dies, stop the add-on instead of serving stale data
+wait -n
+echo "A NUT process exited, stopping add-on."
+exit 1
