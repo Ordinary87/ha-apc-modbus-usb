@@ -1,5 +1,6 @@
 name: APC Modbus USB
-version: "0.1.4"
+version: "0.1.5"
+watchdog: "tcp://[HOST]:[PORT:3493]"
 slug: apc_modbus_usb
 description: NUT with USB Modbus support for APC Smart-UPS
 url: https://github.com/Ordinary87/ha-apc-modbus-usb
